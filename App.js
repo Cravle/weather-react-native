@@ -1,21 +1,37 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState, useEffect} from 'react';
+import Loading from "./Components/Loading";
+import Weather from "./Components/Weather";
+import styled from "styled-components/native/dist/styled-components.native.esm";
+import {API_KEY} from './utils/WeatherAPIKey';
+import {getWeather} from "./redux/weather-reducer";
+import store from "./redux/store";
+import WeatherApp from "./Components/WeatherApp";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    // const [error, setError] = useState(null);
+    //
+    // useEffect( () => {
+    //     getWeather();
+    // },[]);
+
+
+    return (
+        // <Container >
+        //     {isFetching ?
+        //         <Loading/> :
+        //         <Weather />
+        //
+        //     }
+        //
+        // </Container>
+        <WeatherApp/>
+    );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Container = styled.View`
+  width: 100%; 
+  height: 100%;
+  background: deepskyblue;
+`;
+
