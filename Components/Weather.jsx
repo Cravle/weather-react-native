@@ -1,39 +1,32 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components/native/dist/styled-components.native.esm";
-import {MaterialCommunityIcons} from '@expo/vector-icons';
 import {Text, View, Image} from "react-native";
-import MemoedTouchableOpacity from "react-native-web/dist/exports/TouchableOpacity";
 import {connect} from "react-redux";
 import {getWeather} from "../redux/weather-reducer";
+import WeatherImgContainer from "./WeatherImg";
 
-class Weather extends React.Component {
+const Weather = (props) => {
 
 
-    // useEffect(() => {
-    //     props.getWeather();
-    // }, [])
-    render() {
         return (
 
             <Container>
                 <ContentBlock>
-                    <Title>{this.props.descr}</Title>
-                    <City>{this.props.city}</City>
+                    <Title>{props.descr}</Title>
+                    <City>{props.city}</City>
                 </ContentBlock>
 
                 <WeatherBlock>
-                    <WeatherImg
-                        source={require('../assets/img/sun_PNG13441.png')}
-                    />
-                    <Degree>{this.props.temperature}°</Degree>
+                    <WeatherImgContainer />
+                    <Degree daytime={props.daytime}>{props.temperature}°</Degree>
 
                 </WeatherBlock>
-                <Text>{this.props.error}</Text>
+                <Text>{props.error}</Text>
             </Container>
 
 
         )
-    }
+
 }
 
 
@@ -45,11 +38,7 @@ const ContentBlock = styled.View`
 `
 
 
-const WeatherImg = styled.Image`
-  justify-content: center;
-  width: 200px;
-  height: 200px;
-`
+
 
 const WeatherBlock = styled.View`
   flex: 2;
@@ -64,14 +53,14 @@ const Container = styled.View`
 `;
 
 const Degree = styled.Text`
-  color: yellow;
+  color: ${props => props.daytime === "night" ? '#ccc' : "yellow"};
   font-size: 80px;
   text-align: center;
   padding-left: 7%;
 `
 
 const City = styled.Text`
-  color: #FFF;
+  color: #fff;
   font-size: 48px;
   font-weight: 600;
   text-align: center;
@@ -79,13 +68,16 @@ const City = styled.Text`
 `
 
 const Title = styled.Text`
-  font-size: 72px;
+  font-size: 60px;
+  color: #000;
+  text-align: center;
 `
 const mapStateToProps = (store) => ({
     city: store.weather.city,
     temperature: store.weather.temperature,
     descr: store.weather.descr,
     error: store.weather.error,
+    daytime: store.weather.daytime
 });
 
 let WeatherContainer = connect(mapStateToProps, {getWeather})(Weather);

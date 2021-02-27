@@ -9,22 +9,11 @@ import WeatherApp from "./Components/WeatherApp";
 
 export default function App() {
 
-    // const [error, setError] = useState(null);
-    //
-    // useEffect( () => {
-    //     getWeather();
-    // },[]);
+
 
 
     return (
-        // <Container >
-        //     {isFetching ?
-        //         <Loading/> :
-        //         <Weather />
-        //
-        //     }
-        //
-        // </Container>
+
         <WeatherApp/>
     );
 }
