@@ -6,41 +6,42 @@ import MemoedTouchableOpacity from "react-native-web/dist/exports/TouchableOpaci
 import {connect} from "react-redux";
 import {getWeather} from "../redux/weather-reducer";
 
-const Weather = (props) => {
-    useEffect(() => {
-        getWeather();
-    }, )
-
-    return (
-
-        <Container>
-            <ContentBlock>
-                <Title>{props.descr}</Title>
-                <City>{props.city}</City>
-            </ContentBlock>
-
-            <WeatherBlock>
-                <WeatherImg
-                    source={require('../assets/img/sun_PNG13441.png')}
-                />
-                <Degree>{props.temperature}°</Degree>
-
-            </WeatherBlock>
-            <Text>{props.error}</Text>
-        </Container>
+class Weather extends React.Component {
 
 
-    )
+    // useEffect(() => {
+    //     props.getWeather();
+    // }, [])
+    render() {
+        return (
+
+            <Container>
+                <ContentBlock>
+                    <Title>{this.props.descr}</Title>
+                    <City>{this.props.city}</City>
+                </ContentBlock>
+
+                <WeatherBlock>
+                    <WeatherImg
+                        source={require('../assets/img/sun_PNG13441.png')}
+                    />
+                    <Degree>{this.props.temperature}°</Degree>
+
+                </WeatherBlock>
+                <Text>{this.props.error}</Text>
+            </Container>
+
+
+        )
+    }
 }
-
-
 
 
 const ContentBlock = styled.View`
   margin-top: 30px;
   flex: 1;
   justify-content: center;
-  align-items: center;  
+  align-items: center;
 `
 
 

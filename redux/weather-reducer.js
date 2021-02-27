@@ -1,11 +1,11 @@
-import {fetchWeather} from "../utils/api";
+import {fetchWeather, weatherAPI} from "../utils/api";
 
 const INITIALIZED_SUCCESS = 'WEATHER-APP/WEATHER-REDUCER/INITIALIZED-SUCCESS';
 const SET_WEATHER_DATA = 'WEATHER-APP/WEATHER-REDUCER/SET-WEATHER-DATA';
 const SET_ERROR = 'WEATHER-APP/WEATHER-REDUCER/SET-ERROR';
 
 let initialState = {
-    initialized: false,
+    isFetching: false,
     city: "Kharkov",
     temperature: "23",
     descr: "Sunny",
@@ -22,7 +22,10 @@ const weatherReducer = (state = initialState, action) => {
         case SET_WEATHER_DATA:
             return {
                 ...state,
-                ...action.data
+                city: action.city,
+                temperature: action.temperature,
+                descr: action.descr,
+                isFetching: false
             }
         case SET_ERROR :
             return {
@@ -40,29 +43,31 @@ const setError = (error) => ({
     error
 })
 
-const setWeather = (city, temperature, descr) => ({
-    type: SET_WEATHER_DATA,
-    city,
-    temperature,
-    descr
-})
+const setWeather = (city, temperature, descr) => (
+    {
+
+        type: SET_WEATHER_DATA,
+        city,
+        temperature,
+        descr
+    })
 
 
+export const getWeather = () => (dispatch) => {
+    navigator.geolocation.getCurrentPosition(
+        async (position) => {
 
-export const getWeather = () => async (dispatch) => {
+            const data = await weatherAPI.getWeather(position.coords.latitude, position.coords.longitude);
 
-    const json = navigator.geolocation.getCurrentPosition(
-        position => {
-            fetchWeather(position.coords.latitude, position.coords.longitude);
+            console.log(data);
+            dispatch(setWeather(data.name, data.main.temp, data.weather[0].description));
+
+
         },
         error => {
             dispatch(setError(error));
         }
     );
-
-    dispatch(setWeather(json.name, json.main.temp, json.weather[0].description));
-
-
 
 
 }

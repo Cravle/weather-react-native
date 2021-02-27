@@ -7,21 +7,29 @@ import styled from "styled-components/native/dist/styled-components.native.esm";
 import {getWeather} from "../redux/weather-reducer";
 import store from "../redux/store";
 
-const WeatherAppContent = (props) => {
-    return (
-        <Container>
-            {props.initialized ?
-                <Loading/> :
-                <WeatherContainer/>
+class WeatherAppContent extends React.Component {
+    componentDidMount() {
+        this.props.getWeather();
+    }
 
-            }
+    render() {
 
-        </Container>
-    )
+
+        return (
+            <Container>
+                {this.props.isFetching ?
+                    <Loading/> :
+                    <WeatherContainer/>
+
+                }
+
+            </Container>
+        )
+    }
 }
 
 let mapStateToProps = (store) => ({
-    initialized: store.weather.initialized
+    isFetching: store.weather.isFetching
 
 })
 
