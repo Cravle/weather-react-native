@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {Text, View, Image} from "react-native";
 import {connect} from "react-redux";
@@ -8,24 +8,24 @@ import WeatherImgContainer from "./WeatherImg";
 const Weather = (props) => {
 
 
-        return (
+    return (
 
-            <Container>
-                <ContentBlock>
-                    <Title>{props.descr}</Title>
-                    <City>{props.city}</City>
-                </ContentBlock>
+        <Container>
+            <ContentBlock>
+                <Title>{props.descr}</Title>
+                <City>{props.city}</City>
+            </ContentBlock>
 
-                <WeatherBlock>
-                    <WeatherImgContainer />
-                    <Degree daytime={props.daytime}>{props.temperature}°</Degree>
+            <WeatherBlock>
+                <WeatherImgContainer/>
+                <Degree daytime={props.daytime}>{props.temperature}°</Degree>
 
-                </WeatherBlock>
-                <Text>{props.error}</Text>
-            </Container>
+            </WeatherBlock>
+            <Text>{props.error}</Text>
+        </Container>
 
 
-        )
+    )
 
 }
 
@@ -36,8 +36,6 @@ const ContentBlock = styled.View`
   justify-content: center;
   align-items: center;
 `
-
-
 
 
 const WeatherBlock = styled.View`

@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react';
-import {compose} from "redux";
+import React from 'react';
+
 import {connect, Provider} from "react-redux";
 import Loading from "./Loading";
 import WeatherContainer from "./Weather";
@@ -7,8 +7,6 @@ import styled from "styled-components/native/dist/styled-components.native.esm";
 import {getWeather, setDateTime} from "../redux/weather-reducer";
 import store from "../redux/store";
 
-const date = new Date();
-const hours = date.getHours();
 
 
 class WeatherAppContent extends React.Component {
@@ -19,11 +17,15 @@ class WeatherAppContent extends React.Component {
 
     }
 
-    render() {
 
+    render() {
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80
+        };
 
         return (
-            <Container daytime={this.props.daytime}>
+            <Container  daytime={this.props.daytime}>
                 {this.props.isFetching ?
                     <Loading/> :
                     <WeatherContainer />

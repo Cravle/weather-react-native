@@ -1,17 +1,7 @@
-import cloudy from "../assets/img/clouds.png";
 import React from "react";
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {connect} from "react-redux";
-
 import {WeatherVars} from "../utils/WeatherVars";
-
-const sunny = "assets:/sunny.png"
-const clouds = "../assets/img/clouds.png"
-const fog = "../assets/img/fog.png"
-const snow = "../assets/img/snow.png"
-
-const vars = WeatherVars;
-
 
 const WeatherImg = (props) => {
     const code = props.kod
@@ -69,7 +59,7 @@ const WeatherImg = (props) => {
 
     return (
         <Img
-            source={require(snow)}
+            source={WeatherVars["common"].mist}
         />
     )
 }

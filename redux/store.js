@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, compose, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import weatherReducer from "./weather-reducer";
 import thunkMiddleware from "redux-thunk"
 

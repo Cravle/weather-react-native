@@ -1,4 +1,4 @@
-import {fetchWeather, weatherAPI} from "../utils/api";
+import { weatherAPI} from "../utils/api";
 
 const INITIALIZED_SUCCESS = 'WEATHER-APP/WEATHER-REDUCER/INITIALIZED-SUCCESS';
 const SET_WEATHER_DATA = 'WEATHER-APP/WEATHER-REDUCER/SET-WEATHER-DATA';
@@ -77,7 +77,7 @@ export const setDateTime = () => (dispatch) => {
     const date = new Date();
     const hours = date.getHours();
     let daytime = 'night';
-    if(hours >= 6 && hours <= 21) {
+    if(hours > 6 && hours < 21) {
         daytime = 'day'
     }
 
