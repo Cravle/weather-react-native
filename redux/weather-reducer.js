@@ -1,4 +1,4 @@
-import {fetchWeather, weatherAPI} from "../utils/api";
+import {weatherAPI} from "../utils/api";
 
 const INITIALIZED_SUCCESS = 'WEATHER-APP/WEATHER-REDUCER/INITIALIZED-SUCCESS';
 const SET_WEATHER_DATA = 'WEATHER-APP/WEATHER-REDUCER/SET-WEATHER-DATA';

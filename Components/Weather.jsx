@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from "styled-components/native/dist/styled-components.native.esm";
 import {Text, View, Image} from "react-native";
 import {connect} from "react-redux";
@@ -53,7 +53,7 @@ const Container = styled.View`
 `;
 
 const Degree = styled.Text`
-  color: ${props => props.daytime === "night" ? '#ccc' : "yellow"};
+  color: ${props => props.daytime === "night" ? '#8FCAC7' : "yellow"};
   font-size: 80px;
   text-align: center;
   padding-left: 7%;
@@ -69,7 +69,7 @@ const City = styled.Text`
 
 const Title = styled.Text`
   font-size: 60px;
-  color: #000;
+  color: #262626;
   text-align: center;
 `
 const mapStateToProps = (store) => ({

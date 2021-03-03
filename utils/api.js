@@ -1,4 +1,4 @@
-import {API_KEY} from '../utils/WeatherAPIKey';
+
 
 import * as axios from 'axios';
 
